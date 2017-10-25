@@ -23,7 +23,7 @@
        
             
         
-        echo "<script>window.location.assign('login.php');</script>";
+        header("location:login.php");
            
              
         
