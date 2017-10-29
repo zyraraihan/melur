@@ -9,13 +9,8 @@ if (!$conn) {
 	die ('Failed to connect to MySQL: ' . mysqli_connect_error());	
 }
 
-$sql = "SELECT id, nama_penuh, nama_syarikat, alamat_surat_menyurat FROM user";
-		
-$query = mysqli_query($conn, $sql);
 
-if (!$query) {
-	die ('SQL Error: ' . mysqli_error($conn));
-}
+require('TableValidate.php');
 ?>
 
 
@@ -161,7 +156,7 @@ input[type=text]:focus {
                     </div>
                 </div>
                 <div class="row">
-                    <form action="TableValidate.php" method="post">
+                    <form action="table.php" method="post">
                          <input type="text" name="valueToSearch"  placeholder="Search..">
                          <input type="submit" name="search" value="Submit"><br><br>
                     </form>
@@ -194,14 +189,14 @@ input[type=text]:focus {
 					                   <td><?php echo $row['nama_syarikat'];?></td>
                                        <td><?php echo $row['alamat_surat_menyurat'];?></td>
 					                   <td class="center"><button class="btn success"><a href="display.php">Butiran</a></button></td>
-                                    </tr>';
+                                    </tr>
 			                 <?php endwhile;?>
                                         
                                         
                     <?php
 		              $no 	= 1;
 		
-		                  while ($row = mysqli_fetch_array($query))
+		                  while ($row = mysqli_fetch_array($search_result))
 		                       {
 			
 			                     echo '<tr>
